@@ -816,6 +816,10 @@ function route() {
 window.addEventListener("hashchange", route);
 route();
 
+document.getElementById("email").addEventListener("click", () => {
+  const t = document.getElementById("email").textContent, b = document.getElementById("copy-email");
+  try { navigator.clipboard.writeText(t).then(() => { b.textContent = "Email copied"; setTimeout(() => b.textContent = "Copy email", 2500); }).catch(() => {}); } catch (e) {}
+});
 document.getElementById("copy-email").addEventListener("click", async e => {
   const t = document.getElementById("email").textContent;
   try { await navigator.clipboard.writeText(t); e.target.textContent = "Copied"; }
