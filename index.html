@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script data-goatcounter="https://diogoarnosti.goatcounter.com/count" data-goatcounter-settings='{"no_onload": true}' async src="https://gc.zgo.at/count.js"></script>
 <title>Diogo Arnosti Portfolio</title>
 <meta name="description" content="Diogo Arnosti, graphic designer. Brand identities, campaigns and social media. Sunshine Coast, Queensland.">
 <link rel="icon" href="assets/brand/favicon.png">
@@ -338,10 +339,10 @@ footer.foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-betwe
       <h2 id="contact-title">Let's make something people remember.</h2>
     </div>
     <dl>
-      <div><dt class="mono">Email</dt><dd><a id="email" href="mailto:diogoarnostidesign@gmail.com">diogoarnostidesign@gmail.com</a></dd><button class="copy" id="copy-email" type="button">Copy email</button></div>
+      <div><dt class="mono">Email</dt><dd><a id="email" data-goatcounter-click="email-click" href="mailto:diogoarnostidesign@gmail.com">diogoarnostidesign@gmail.com</a></dd><button class="copy" id="copy-email" type="button" data-goatcounter-click="copy-email" data-goatcounter-title="Copy email">Copy email</button></div>
       <div><dt class="mono">Based in</dt><dd>Sunshine Coast, Queensland</dd></div>
       <div><dt class="mono">Open to</dt><dd>In-house or agency roles on the Sunshine Coast, or remote from anywhere</dd></div>
-      <div><dt class="mono">CV</dt><dd><a class="copy cv-btn" href="assets/cv/Diogo_Arnosti_CV.pdf?v=3" download="Diogo_Arnosti_CV.pdf" target="_blank" rel="noopener">Download CV (PDF)</a></dd></div>
+      <div><dt class="mono">CV</dt><dd><a class="copy cv-btn" data-goatcounter-click="cv-download" data-goatcounter-title="CV download" href="assets/cv/Diogo_Arnosti_CV.pdf?v=3" download="Diogo_Arnosti_CV.pdf" target="_blank" rel="noopener">Download CV (PDF)</a></dd></div>
     </dl>
   </div>
 </section>
@@ -794,8 +795,13 @@ function pageTheme(th) {
   THEME_KEYS.forEach(k => r.removeProperty(k));
   if (th) { r.setProperty("--paper", th.bg); r.setProperty("--surface", th.bg); r.setProperty("--ink", th.fg); r.setProperty("--muted", `color-mix(in srgb, ${th.fg} 62%, ${th.bg})`); r.setProperty("--line", `color-mix(in srgb, ${th.fg} 22%, ${th.bg})`); }
 }
+function gcCount(path, tries = 0) {
+  if (window.goatcounter && window.goatcounter.count) { try { window.goatcounter.count({ path }); } catch (e) {} }
+  else if (tries < 20 && document.querySelector("script[data-goatcounter]")) setTimeout(() => gcCount(path, tries + 1), 500);
+}
 function route() {
   const h = (location.hash || "#work").slice(1);
+  gcCount("/" + h);
   closeLb();
   pageTheme(bySlug[h] && bySlug[h].theme);
   let navKey = "work";
