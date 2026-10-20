@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diogo Arnosti Portfolio</title>
+<meta name="description" content="Diogo Arnosti, graphic designer. Brand identities, campaigns and social media. Sunshine Coast, Queensland.">
+<link rel="icon" href="assets/brand/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Figtree:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: contact-sheet index. Brand blue does the talking, black/white frames the work. Project pages read like a spec sheet followed by the images, grouped by application. */
+:root {
+  --paper: #F5F6FA;
+  --surface: #FFFFFF;
+  --ink: #15161B;
+  --muted: #5B5F70;
+  --line: #DCDFEA;
+  --blue: #4560E6;
+  --on-blue: #FFFFFF;
+  --shade: rgba(21, 22, 27, .06);
+  --f-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Figtree", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --f-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --s-1: .8125rem; --s0: 1rem; --s1: 1.25rem; --s2: 1.75rem; --s3: 2.5rem; --s4: clamp(2.6rem, 6.4vw, 5.6rem);
+  --gap: clamp(12px, 1.6vw, 20px);
+  --wrap: 1360px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #101115; --surface: #18191F; --ink: #ECEEF6; --muted: #9BA0B4; --line: #2A2C37;
+    --blue: #7088FF; --on-blue: #0B0C10; --shade: rgba(0, 0, 0, .35); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #101115; --surface: #18191F; --ink: #ECEEF6; --muted: #9BA0B4; --line: #2A2C37;
+  --blue: #7088FF; --on-blue: #0B0C10; --shade: rgba(0, 0, 0, .35); color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 var(--s0)/1.6 var(--f-body); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+a { color: inherit; }
+img, video { display: block; max-width: 100%; height: auto; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 2px; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 720px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
+.mono { font-family: var(--f-mono); font-size: var(--s-1); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.mask { display: inline-block; background: currentColor; -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat; }
+
+/* Header */
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+.brand { gap: 9px; }
+.brand .mono-mark { --m: url(assets/brand/h-mark.png); width: 26px; height: 26px; color: var(--blue); }
+.brand .word { --m: url(assets/brand/h-word.png); width: 136px; height: 26px; }
+nav.main { display: flex; gap: clamp(14px, 3vw, 32px); }
+nav.main a { text-decoration: none; font-weight: 500; font-size: .95rem; padding-block: 4px; border-bottom: 2px solid transparent; }
+nav.main a:hover, nav.main a[aria-current="page"] { border-color: var(--blue); }
+
+/* Hero */
+.hero .wrap { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: clamp(28px, 4vw, 48px); min-height: calc(100svh - 58px - env(safe-area-inset-top, 0px)); padding-block: clamp(24px, 4vw, 48px) clamp(20px, 3vw, 32px); }
+.hello { --hw: 2.6em; font: 800 clamp(3rem, 11.5vw, 12.5rem)/.9 var(--f-display); letter-spacing: -.05em; margin: 0; display: grid; gap: .04em; align-self: center; justify-self: center; width: max-content; max-width: 100%; padding-right: 1.9em; padding-bottom: .45em; position: relative; }
+.hello .line { display: flex; align-items: flex-start; flex-wrap: nowrap; min-width: 0; position: relative; z-index: 1; }
+.hello .line:first-child { z-index: 0; }
+.hello .w { white-space: nowrap; }
+.nm { position: relative; }
+.note { position: absolute; left: calc(var(--gx, 70%) + .09em); top: .84em; width: 1.2em; height: .31em; pointer-events: none; }
+.note svg { width: 100%; height: 100%; overflow: visible; display: block; }
+.note path { fill: none; stroke: var(--blue); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.anchor { position: absolute; left: calc(100% + .12em); top: 30%; width: 0; height: 0; }
+.pron { position: absolute; left: 0; top: 0; transform: translateY(-56%); font: 700 clamp(1rem, 2vw, 1.9rem)/1 var(--f-display); letter-spacing: -.01em; color: var(--blue); white-space: nowrap; }
+.note .am { display: none; }
+@media (max-width: 700px) {
+  .hello { font-size: 22vw; padding: 0 0 1.55em; justify-self: center; text-align: center; }
+  .hello .line { justify-content: center; }
+  .hello .line.line2 { padding-left: 0; }
+  .hello .line2 .w { display: block; }
+  .nm .im, .nm .dg { display: block; }
+  .nm .dg { position: relative; display: inline-block; }
+  .hello sup { position: absolute; margin: 0; }
+  .note { left: 50%; top: auto; bottom: -1.08em; width: .42em; height: .8em; transform: translateX(-50%); }
+  .note .ad { display: none; } .note .am { display: block; }
+  .note path { stroke-width: 5; }
+  .anchor { left: 50%; top: calc(100% + .1em); }
+  .pron { font-size: max(1.1rem, 4.8vw); transform: translate(-50%, 0); }
+}
+.hello .line2 { padding-left: calc(var(--hw) * .55); }
+.hello sup { font-size: .32em; color: var(--blue); vertical-align: top; position: relative; top: .1em; margin-left: .05em; }
+.slot { position: relative; width: 0; align-self: stretch; }
+.coin { position: absolute; left: .1em; top: -.02em; perspective: 900px; line-height: 0; }
+.hero-mark { --m: url(assets/brand/monogram.png); color: var(--blue); width: 1.8em; aspect-ratio: 600 / 612; opacity: .22; transition: transform .9s cubic-bezier(.2, .8, .2, 1); }
+.hello:hover .hero-mark { transform: rotateY(360deg); }
+.hero-foot { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; }
+.lede { background: var(--blue); color: var(--on-blue); }
+.lede .wrap { padding-block: clamp(56px, 8vw, 110px); }
+.lede p { margin: 0; max-width: 34ch; font: 600 clamp(1.5rem, 3vw, 2.6rem)/1.22 var(--f-display); letter-spacing: -.015em; color: color-mix(in srgb, var(--on-blue) 72%, var(--blue)); }
+.lede p strong { color: var(--on-blue); font-weight: 600; }
+.hero-foot p { margin: 0; color: var(--muted); max-width: 52ch; }
+.hero-foot p strong { color: var(--ink); font-weight: 600; }
+.say { font-family: var(--f-mono); font-size: .95rem; color: var(--muted); white-space: nowrap; }
+.say b { color: var(--blue); font-weight: 500; }
+.foot-r { display: grid; gap: 8px; justify-items: start; }
+@media (min-width: 900px) { .foot-r { justify-items: end; } }
+.scroll-cue { color: var(--ink); background: none; border: 0; padding: 0; cursor: pointer; }
+.scroll-cue:hover { color: var(--blue); }
+.caret { display: inline-block; width: 2px; height: 1.15em; background: var(--blue); margin-left: .5em; vertical-align: -.2em; }
+@media (prefers-reduced-motion: no-preference) { .caret { animation: blink 1s steps(1) infinite; } @keyframes blink { 50% { opacity: 0; } } }
+@media (max-width: 420px) { .brand .word { width: 110px; height: 21px; } .brand .mono-mark { width: 21px; height: 21px; } nav.main { gap: 12px; } }
+.hero { overflow-x: clip; }
+@media (prefers-reduced-motion: no-preference) {
+  .intro-anim .w { display: inline-block; }
+  .intro-anim .line:not(.line2) .w { animation: fromLeft 1.9s cubic-bezier(.16, 1, .3, 1) .2s both; }
+  .intro-anim .line2 .w { animation: fromRight 1.9s cubic-bezier(.16, 1, .3, 1) .55s both; }
+  .intro-anim .hero-mark { animation: coin 2.4s cubic-bezier(.16, .9, .24, 1) 1.7s both; }
+  .intro-anim .arrow-line { stroke-dasharray: 1; animation: draw 1.5s cubic-bezier(.37, 0, .2, 1) 1.9s both; }
+  .intro-anim .arrow-head { stroke-dasharray: 1; animation: draw .45s cubic-bezier(.25, .1, .25, 1) 3.3s both; }
+  .intro-anim .pron { animation: fadeO .8s ease 3.5s both; }
+  @keyframes fadeO { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes draw { 0% { stroke-dashoffset: 1; opacity: 0; } 3% { opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+  @keyframes wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+  header.top.head-in { animation: headIn 1s cubic-bezier(.16, 1, .3, 1) 4.1s both; }
+  @keyframes headIn { from { transform: translateY(-100%); opacity: 0; } to { transform: none; opacity: 1; } }
+  .intro-anim .scroll-cue { animation: fade .8s ease 4.4s both; }
+  @keyframes fromLeft { from { transform: translateX(-70vw); } to { transform: none; } }
+  @keyframes fromRight { from { transform: translateX(70vw); } to { transform: none; } }
+  @keyframes coin { 0% { transform: rotateY(-540deg) scale(.4); opacity: 0; } 100% { transform: none; opacity: .22; } }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+}
+.brands { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; }
+.brands span:not(.mono) { font: 600 1.05rem/1.2 var(--f-display); }
+
+/* Work index */
+.lede + .wrap .work-head { border-top: 0; margin-top: clamp(24px, 4vw, 48px); }
+.work-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; padding-block: 8px 22px; border-top: 1px solid var(--ink); }
+.work-head h2 { font: 600 var(--s2)/1.1 var(--f-display); margin: 18px 0 0; letter-spacing: -.02em; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters button { font: 500 .9rem/1 var(--f-body); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; cursor: pointer; }
+.filters button:hover { border-color: var(--ink); }
+.filters button[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: var(--on-blue); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: clamp(28px, 3vw, 40px) var(--gap); padding-bottom: 80px; }
+.grid.featured { grid-template-columns: minmax(0, 1fr); padding-bottom: clamp(36px, 4vw, 56px); }
+@media (min-width: 600px) { .grid.featured { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1000px) { .grid.featured { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.card { text-decoration: none; display: grid; gap: 12px; min-width: 0; }
+.card .thumb { position: relative; overflow: hidden; background: var(--line); aspect-ratio: 16 / 10; max-width: 100%; }
+.card .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+.card:hover .thumb img { transform: scale(1.035); }
+.card .thumb::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 0 var(--blue); transition: box-shadow .25s; }
+.card:hover .thumb::after, .card:focus-visible .thumb::after { box-shadow: inset 0 0 0 4px var(--blue); }
+.card .meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; align-items: baseline; min-width: 0; }
+.card h3 { font: 600 var(--s1)/1.2 var(--f-display); margin: 0; letter-spacing: -.01em; }
+.featured .card h3 { font-size: 1.5rem; }
+.card:not(.lead) .meta { flex-direction: column; align-items: flex-start; }
+.card.lead { grid-column: 1 / -1; }
+.card.lead .thumb { aspect-ratio: 21 / 9; }
+.card.lead h3 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); letter-spacing: -.025em; }
+@media (max-width: 640px) { .card.lead .thumb { aspect-ratio: 4 / 3; } }
+.card .meta .mono { min-width: 0; }
+.card .sub { color: var(--muted); font-size: .95rem; margin-top: -6px; }
+.more-label { font: 600 var(--s1)/1.2 var(--f-display); margin: 0 0 18px; }
+
+/* Project page */
+.proj-head .wrap { padding-block: clamp(28px, 5vw, 56px) clamp(24px, 4vw, 40px); display: grid; gap: 28px; }
+.back { text-decoration: none; display: inline-flex; gap: 8px; align-items: center; font-weight: 500; }
+.back:hover { color: var(--blue); }
+.proj-head h1 { font: 800 clamp(2.4rem, 7vw, 6rem)/.95 var(--f-display); letter-spacing: -.04em; margin: 0; text-wrap: balance; }
+.proj-body { display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .proj-body { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 56px; } }
+.spec { margin: 0; display: grid; border-top: 1px solid var(--ink); }
+.spec div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 12px; padding-block: 11px; border-bottom: 1px solid var(--line); }
+.spec dt { margin: 0; }
+.spec dd { margin: 0; font-weight: 500; }
+.story { display: grid; gap: 14px; max-width: 62ch; font-size: 1.1rem; }
+.story p { margin: 0; }
+.story p:first-child { font: 600 1.35rem/1.4 var(--f-display); letter-spacing: -.01em; }
+.textblock { display: grid; gap: 12px 56px; grid-template-columns: minmax(0, 1fr); padding-block: clamp(20px, 4vw, 48px); border-top: 1px solid var(--line); }
+.textblock + .gallery, .textblock + h2 { margin-top: 4px; }
+@media (min-width: 900px) { .textblock { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); } }
+.section .textblock h2 { display: block;  font: 800 clamp(1.6rem, 3vw, 2.4rem)/1.05 var(--f-display); letter-spacing: -.025em; margin: 0; color: var(--blue); }
+.textblock .prose { font-size: 1.08rem; }
+.section { padding-block: clamp(28px, 4vw, 52px) 0; }
+.section h2 { display: flex; gap: 14px; align-items: baseline; font: 600 var(--s1)/1.2 var(--f-display); margin: 0 0 16px; letter-spacing: -.01em; }
+.section h2 .mono { font-size: .75rem; }
+.gallery { display: grid; gap: var(--gap); }
+.gallery.stack { gap: 0; }
+.section.flush { padding-block: 0; }
+.stackwrap { margin-top: clamp(28px, 4vw, 52px); background: var(--pbg); }
+.band { background: var(--pbg); color: var(--pfg); padding: clamp(48px, 7vw, 110px) clamp(20px, 6vw, 80px); }
+.band-in { max-width: 640px; margin-inline: auto; display: grid; gap: 14px; font-size: clamp(.95rem, 1.1vw, 1.05rem); line-height: 1.65; }
+.band h3 { margin: 0 0 6px; color: var(--pac); font: 700 clamp(1.15rem, 1.6vw, 1.45rem)/1.25 var(--f-display); white-space: pre-line; }
+.band p { margin: 0; }
+.band .hl { color: var(--pac); }
+.band.accent p { color: var(--pac); font-weight: 600; }
+.band.accent { padding-bottom: clamp(18px, 2.4vw, 32px); }
+.band.big { text-align: center; padding-block: clamp(64px, 10vw, 150px); }
+.band.big h3 { font-size: clamp(2rem, 5.5vw, 4.5rem); line-height: 1.05; letter-spacing: -.02em; margin: 0; }
+.band.big .band-in { gap: 0; }
+.section:has(.band.big) + .section .band { padding-top: 0; }
+.band.big p { text-wrap: balance; margin-top: 16px; font: 400 .9rem/1.5 var(--f-mono); letter-spacing: .02em; opacity: .65; }
+.sizes { padding: clamp(28px, 5vw, 80px) clamp(16px, 5vw, 80px); display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; gap: clamp(14px, 2vw, 28px); }
+.sizes figure { margin: 0; max-width: 100%; display: grid; gap: 8px; }
+.sizes .tile { background: transparent; }
+.sizes figcaption { font: 500 .72rem/1 var(--f-mono); letter-spacing: .06em; color: color-mix(in srgb, var(--pfg) 60%, var(--pbg)); }
+.board { padding: clamp(28px, 6vw, 96px) clamp(16px, 6vw, 96px); display: grid; gap: clamp(10px, 1.6vw, 22px); }
+.brow { display: grid; gap: clamp(10px, 1.6vw, 22px); align-items: start; }
+.brow > * { min-width: 0; }
+.board .tile { background: transparent; }
+.board .email-note { color: color-mix(in srgb, var(--pfg) 60%, var(--pbg)); margin: 0; }
+.section:has(> .band:only-child:not(.big)) + .section > .band:first-child:not(.big) { padding-top: 0; }
+@media (max-width: 640px) { .board.m2 { grid-template-columns: 1fr 1fr; } .board.m1 { grid-template-columns: 1fr; } .board.m1 .brow, .board.m2 .brow { display: contents; } }
+.board.tight { padding: clamp(8px, 1.2vw, 16px) 0; gap: clamp(8px, 1.2vw, 16px); }
+.board.tight .brow { gap: clamp(8px, 1.2vw, 16px); }
+.section:has(> .band:only-child) + .section > .board:first-child, .section:has(> .band:only-child) + .section > .gallery.spaced:first-child { padding-top: 0; }
+.stackwrap.framed .board .tile, .stackwrap.framed .emails .tile { outline: 1px solid color-mix(in srgb, var(--pac) 55%, transparent); outline-offset: 2px; }
+.stackwrap.framed .emails .tile { border: 0; }
+.gallery.stack.spaced { row-gap: clamp(8px, 1.2vw, 16px); padding-block: clamp(8px, 1.2vw, 16px); }
+.section:has(> .gallery.spaced:last-child) + .section > .gallery.spaced:first-child { padding-top: 0; }
+.gallery.stack.g2 { display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(8px, 1.2vw, 16px); padding-block: clamp(8px, 1.2vw, 16px); }
+.over { position: relative; container-type: inline-size; background: #F3F3F3; }
+.over img, .cmp img { display: block; width: 100%; height: auto; }
+.over-txt { position: absolute; left: 10.5%; top: 0; bottom: 0; width: 36%; display: flex; flex-direction: column; justify-content: center; gap: 1.15cqw; font: 400 1.2cqw/1.55 var(--f-body); color: #3A3A3A; text-align: justify; hyphens: auto; }
+.over-txt p { margin: 0; }
+.over-txt .hl { color: #D22730; font-weight: 700; }
+@container (max-width: 760px) {
+  .over-txt { position: static; width: auto; padding: 40px 22px 8px; font-size: 1rem; gap: 14px; text-align: left; }
+}
+.cmp { position: relative; --x: 50%; overflow: hidden; user-select: none; -webkit-user-select: none; }
+.cmp .top { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--x)) 0 0); }
+.cmp .top img { height: 100%; object-fit: cover; }
+.cmp .bar { position: absolute; top: 0; bottom: 0; left: var(--x); width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 6px rgba(0,0,0,.25); pointer-events: none; }
+.cmp .knob { position: absolute; top: 50%; left: var(--x); width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; background: #fff; color: #15161B; display: grid; place-items: center; font: 700 15px/1 var(--f-body); letter-spacing: 2px; box-shadow: 0 2px 10px rgba(0,0,0,.3); pointer-events: none; }
+.cmp input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; touch-action: pan-y; }
+.cmp input:focus-visible ~ .knob { outline: 3px solid var(--pac); outline-offset: 3px; }
+.cmp .hint { position: absolute; left: 50%; bottom: 5%; transform: translateX(-50%); font: 500 12px/1 var(--f-mono, monospace); letter-spacing: .08em; text-transform: uppercase; color: #fff; background: rgba(15,15,15,.7); padding: 8px 12px; border-radius: 999px; pointer-events: none; transition: opacity .4s; }
+.cmp.used .hint { opacity: 0; }
+.row { display: grid; gap: var(--gap); grid-template-columns: repeat(var(--n), minmax(0, 1fr)); align-items: start; }
+@media (max-width: 640px) { .row.r3, .row.r4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .row.r2.wide { grid-template-columns: minmax(0, 1fr); } }
+.tile { background: var(--surface); overflow: hidden; cursor: zoom-in; border: 0; padding: 0; display: block; width: 100%; }
+.tile img, .tile video { width: 100%; }
+.tile.vid { cursor: default; position: relative; }
+.tile.vid video { background: var(--line); }
+.cap { position: absolute; left: 50%; bottom: 14%; transform: translateX(-50%); width: max-content; max-width: 88%; text-align: center; font: 600 clamp(13px, 1.25vw, 17px)/1.35 var(--f-body); color: #fff; background: rgba(10, 12, 20, .8); padding: .4em .75em; border-radius: 4px; pointer-events: none; }
+.cap:empty { display: none; }
+.tile.vid video::cue { font-family: var(--f-body); font-weight: 600; background: rgba(10, 12, 20, .8); color: #fff; }
+.play { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(10, 12, 20, .18); border: 0; cursor: pointer; transition: background .2s; }
+.play:hover { background: rgba(10, 12, 20, .32); }
+.play span { width: clamp(56px, 7vw, 84px); aspect-ratio: 1; border-radius: 50%; background: var(--blue); display: grid; place-items: center; box-shadow: 0 10px 30px rgba(0, 0, 0, .25); transition: transform .2s; }
+.play:hover span { transform: scale(1.06); }
+.play span::before { content: ""; margin-left: 12%; border-style: solid; border-width: .62em 0 .62em 1.05em; border-color: transparent transparent transparent #fff; font-size: clamp(14px, 1.6vw, 20px); }
+.tile.vid.playing .play { display: none; }
+.emails { display: grid; gap: var(--gap); grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 760px) { .emails { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.emails .tile { height: min(78vh, 760px); overflow-y: auto; cursor: default; border: 1px solid var(--line); overscroll-behavior: contain; }
+.email-note { margin-top: 10px; }
+.next { margin-top: clamp(48px, 7vw, 96px); border-top: 1px solid var(--ink); }
+.next a { display: flex; justify-content: space-between; align-items: center; gap: 16px; text-decoration: none; padding-block: 28px 64px; }
+.next a strong { font: 800 clamp(1.8rem, 5vw, 3.6rem)/1 var(--f-display); letter-spacing: -.03em; }
+.next a:hover strong { color: var(--blue); }
+
+/* About */
+.about .wrap { padding-block: clamp(36px, 6vw, 80px); display: grid; gap: 48px; }
+.about-grid { display: grid; gap: 40px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .about-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 72px; } }
+.about h1 { font: 800 var(--s4)/.98 var(--f-display); letter-spacing: -.035em; margin: 0; text-wrap: balance; }
+.about h1 .say { display: block; font: 400 1.05rem/1.4 var(--f-mono); letter-spacing: .02em; color: var(--muted); margin-top: 14px; }
+.prose { display: grid; align-content: start; gap: 16px; max-width: 62ch; font-size: 1.08rem; }
+.prose p { margin: 0; }
+.block h2 { font: 600 var(--s1)/1.2 var(--f-display); margin: 0 0 12px; }
+.timeline { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+.timeline li { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 14px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.timeline li strong { display: block; font-weight: 600; }
+.timeline li span { color: var(--muted); font-size: .95rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.tags li { border: 1px solid var(--ink); border-radius: 999px; padding: 6px 12px; font-size: .92rem; }
+.tags li.strong { font-weight: inherit; }
+.stat { display: grid; gap: 4px; }
+.stat .big { font: 800 clamp(4.5rem, 10vw, 7.5rem)/.85 var(--f-display); letter-spacing: -.05em; color: var(--blue); }
+.stat .pre { font: 600 1.15rem/1 var(--f-display); color: var(--muted); }
+.stat .lbl { font: 600 1.15rem/1.3 var(--f-display); max-width: 22ch; }
+.break { display: grid; gap: 12px; padding: 22px 0 4px; border-top: 1px solid var(--line); }
+.break h2 { font: 600 var(--s1)/1.2 var(--f-display); margin: 0; }
+.break p { margin: 0; }
+details summary { cursor: pointer; font-weight: 600; color: var(--blue); width: fit-content; list-style: none; }
+details summary::-webkit-details-marker { display: none; }
+details summary::after { content: " +"; }
+details[open] summary::after { content: " –"; }
+details .full { display: grid; gap: 14px; padding-top: 14px; color: var(--muted); }
+.side { display: grid; gap: 36px; align-content: start; }
+
+/* Contact band */
+.contact { background: var(--blue); color: var(--on-blue); }
+.contact .wrap { padding-block: clamp(48px, 8vw, 96px); display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); align-items: end; }
+@media (min-width: 900px) { .contact .wrap { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); } }
+.contact h2 { font: 800 clamp(2.2rem, 5.5vw, 4.6rem)/1 var(--f-display); letter-spacing: -.035em; margin: 0; text-wrap: balance; }
+.contact .mono { color: inherit; opacity: .8; }
+.contact dl { margin: 0; display: grid; gap: 14px; }
+.contact dl div { display: grid; gap: 2px; border-top: 1px solid color-mix(in srgb, var(--on-blue) 35%, transparent); padding-top: 10px; }
+.contact dd { margin: 0; font-size: 1.1rem; font-weight: 600; overflow-wrap: anywhere; }
+.cv-btn { display: inline-block; text-decoration: none; margin-top: 2px; }
+.copy { font: 500 .85rem/1 var(--f-body); color: var(--blue); background: var(--on-blue); border: 0; border-radius: 999px; padding: 8px 12px; cursor: pointer; justify-self: start; margin-top: 6px; }
+.placeholder { border-bottom: 2px dashed currentColor; }
+footer.foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 22px; }
+
+/* Lightbox */
+.lb { position: fixed; inset: 0; z-index: 50; background: color-mix(in srgb, var(--paper) 94%, transparent); display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.lb img { max-height: calc(100vh - 96px); width: auto; max-width: 100%; box-shadow: 0 20px 60px var(--shade); }
+.lb .bar { position: absolute; top: max(12px, env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); display: flex; gap: 8px; }
+.lb button { font: 600 .95rem/1 var(--f-body); background: var(--ink); color: var(--paper); border: 0; border-radius: 999px; padding: 11px 16px; cursor: pointer; }
+.lb .prev, .lb .nxt { position: absolute; top: 50%; transform: translateY(-50%); }
+.lb .prev { left: max(12px, env(safe-area-inset-left, 0px)); }
+.lb .nxt { right: max(12px, env(safe-area-inset-right, 0px)); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .card .thumb img { transition: none; } }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#work" aria-label="Diogo Arnosti Design, home">
+      <span class="mask mono-mark" aria-hidden="true"></span>
+      <span class="mask word" aria-hidden="true"></span>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="#work" data-nav="work">Work</a>
+      <a href="#about" data-nav="about">About</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<section class="contact" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div>
+      <p class="mono">Available for full-time and freelance</p>
+      <h2 id="contact-title">Let's make something people remember.</h2>
+    </div>
+    <dl>
+      <div><dt class="mono">Email</dt><dd><a id="email" href="mailto:diogoarnostidesign@gmail.com">diogoarnostidesign@gmail.com</a></dd><button class="copy" id="copy-email" type="button">Copy email</button></div>
+      <div><dt class="mono">Based in</dt><dd>Sunshine Coast, Queensland</dd></div>
+      <div><dt class="mono">Open to</dt><dd>In-house or agency roles on the Sunshine Coast, or remote from anywhere</dd></div>
+      <div><dt class="mono">CV</dt><dd><a class="copy cv-btn" href="assets/cv/Diogo_Arnosti_CV.pdf" download="Diogo_Arnosti_CV.pdf" target="_blank" rel="noopener">Download CV (PDF)</a></dd></div>
+    </dl>
+  </div>
+</section>
+<footer class="foot"><div class="wrap mono"><span>© 2026 Diogo Arnosti</span><span>Graphic Designer</span></div></footer>
+
+<script>
+const MANIFEST = {"seo-portuga":{"cover":"assets/seo/cover.webp","cw":1200,"ch":675,"imgs":[{"t":"img","src":"assets/seo/00.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/01.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/02.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/03.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/04.gif","w":1920,"h":1080},{"t":"img","src":"assets/seo/05.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/06.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/07.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/08.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/09.gif","w":1920,"h":1080},{"t":"img","src":"assets/seo/10.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/11.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/12.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/13.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/14.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/15.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/16.gif","w":1920,"h":1049},{"t":"img","src":"assets/seo/17.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/18.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/19.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/20.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/21.webp","w":1800,"h":1012},{"t":"img","src":"assets/seo/22.webp","w":1800,"h":1012}],"vids":[]},"brasil-cacau":{"cover":"assets/cbc/cover.webp","cw":1200,"ch":750,"imgs":[{"t":"img","src":"assets/cbc/00.webp","w":1800,"h":943},{"t":"img","src":"assets/cbc/01.webp","w":1800,"h":1012},{"t":"img","src":"assets/cbc/02.webp","w":1800,"h":1012},{"t":"img","src":"assets/cbc/03.webp","w":960,"h":240},{"t":"img","src":"assets/cbc/04.webp","w":600,"h":600},{"t":"img","src":"assets/cbc/05.webp","w":300,"h":250},{"t":"img","src":"assets/cbc/06.webp","w":280,"h":280},{"t":"img","src":"assets/cbc/07.webp","w":270,"h":270},{"t":"img","src":"assets/cbc/08.webp","w":250,"h":250},{"t":"img","src":"assets/cbc/09.webp","w":1080,"h":1080},{"t":"img","src":"assets/cbc/10.webp","w":1080,"h":1920},{"t":"img","src":"assets/cbc/11.webp","w":1080,"h":1080},{"t":"img","src":"assets/cbc/12.webp","w":1200,"h":628},{"t":"img","src":"assets/cbc/13.webp","w":1200,"h":628},{"t":"img","src":"assets/cbc/14.webp","w":1800,"h":1125},{"t":"img","src":"assets/cbc/15.webp","w":1800,"h":1125},{"t":"img","src":"assets/cbc/16.webp","w":1800,"h":1125},{"t":"img","src":"assets/cbc/17.webp","w":1000,"h":1369},{"t":"img","src":"assets/cbc/18.webp","w":1000,"h":1369},{"t":"img","src":"assets/cbc/19.webp","w":1000,"h":1369},{"t":"img","src":"assets/cbc/20.webp","w":1000,"h":1369},{"t":"img","src":"assets/cbc/21.webp","w":1000,"h":1369},{"t":"img","src":"assets/cbc/22.webp","w":1000,"h":1369},{"t":"img","src":"assets/cbc/23.webp","w":1800,"h":262},{"t":"img","src":"assets/cbc/24.webp","w":1800,"h":441},{"t":"img","src":"assets/cbc/25.webp","w":828,"h":600},{"t":"img","src":"assets/cbc/26.webp","w":1920,"h":1080},{"t":"img","src":"assets/cbc/27.webp","w":1920,"h":1080},{"t":"img","src":"assets/cbc/28.webp","w":1920,"h":1080},{"t":"img","src":"assets/cbc/29.webp","w":1920,"h":1080},{"t":"img","src":"assets/cbc/30.webp","w":1800,"h":1012},{"t":"img","src":"assets/cbc/31.webp","w":1800,"h":1012},{"t":"img","src":"assets/cbc/32.webp","w":1800,"h":1012},{"t":"img","src":"assets/cbc/33.webp","w":1800,"h":1012},{"t":"img","src":"assets/cbc/34.webp","w":1800,"h":1012},{"t":"img","src":"assets/cbc/35.webp","w":1800,"h":1012},{"t":"img","src":"assets/cbc/36.webp","w":820,"h":312},{"t":"img","src":"assets/cbc/37.webp","w":1800,"h":1125},{"t":"img","src":"assets/cbc/38.webp","w":1800,"h":1125},{"t":"img","src":"assets/cbc/39.webp","w":1800,"h":1125}],"vids":[]},"houpa":{"cover":"assets/houpa/cover.webp","cw":1200,"ch":750,"imgs":[{"t":"img","src":"assets/houpa/01.webp","w":1024,"h":686},{"t":"img","src":"assets/houpa/02.webp","w":1024,"h":686},{"t":"img","src":"assets/houpa/03.webp","w":1024,"h":686},{"t":"img","src":"assets/houpa/04.webp","w":1024,"h":686},{"t":"img","src":"assets/houpa/05.webp","w":1024,"h":686},{"t":"img","src":"assets/houpa/06.webp","w":1024,"h":686},{"t":"img","src":"assets/houpa/07.webp","w":1024,"h":686},{"t":"img","src":"assets/houpa/08.webp","w":1080,"h":1080},{"t":"img","src":"assets/houpa/09.webp","w":1080,"h":1080},{"t":"img","src":"assets/houpa/10.webp","w":1080,"h":1080},{"t":"img","src":"assets/houpa/11.webp","w":1080,"h":1080},{"t":"img","src":"assets/houpa/12.webp","w":1800,"h":469},{"t":"img","src":"assets/houpa/13.webp","w":1800,"h":469},{"t":"img","src":"assets/houpa/14.webp","w":1800,"h":469},{"t":"img","src":"assets/houpa/15.webp","w":1800,"h":469},{"t":"img","src":"assets/houpa/16.webp","w":600,"h":3351},{"t":"img","src":"assets/houpa/17.webp","w":600,"h":3775},{"t":"img","src":"assets/houpa/18.webp","w":600,"h":3736},{"t":"img","src":"assets/houpa/19.webp","w":600,"h":1698}],"vids":[]},"casa-do-motoqueiro":{"cover":"assets/casa-do-motoqueiro/cover.webp","cw":1200,"ch":750,"imgs":[],"vids":[{"t":"vid","src":"assets/casa-do-motoqueiro/v01.mp4","poster":"assets/casa-do-motoqueiro/v01.webp","w":540,"h":960,"cues":[[1.0,8.5,"Keeping your freedom on the road, every day"]]},{"t":"vid","src":"assets/casa-do-motoqueiro/v02.mp4","poster":"assets/casa-do-motoqueiro/v02.webp","w":540,"h":960,"cues":[[1.0,2.8,"Good morning, how are you?"],[2.8,4.8,"Good morning! All good, and you? How can I help?"],[4.8,6.8,"All good! I'd like to know if you have red helmets."],[6.8,9.0,"Yes, we do! I'll send you photos of the models we have available..."],[9.0,12.0,"Do you prefer an open-face or full-face helmet?"],[12.5,16.5,"Have you tried our WhatsApp customer service?"],[16.5,21.8,"Save our number. If you need anything, just send us a message!"]]},{"t":"vid","src":"assets/casa-do-motoqueiro/v03.mp4","poster":"assets/casa-do-motoqueiro/v03.webp","w":540,"h":960,"cues":[[0.3,6.9,"Rescue"],[7.8,9.4,"Have you heard about our rescue service?"],[9.4,15.0,"Save our number. You never know when you'll need it!"]]},{"t":"vid","src":"assets/casa-do-motoqueiro/v04.mp4","poster":"assets/casa-do-motoqueiro/v04.webp","w":540,"h":960,"cues":[[1.0,7.9,"Engine oil: the right brand and type of oil for your motorcycle's engine"]]},{"t":"vid","src":"assets/casa-do-motoqueiro/v05.mp4","poster":"assets/casa-do-motoqueiro/v05.webp","w":540,"h":960,"cues":[[1.0,7.0,"Did you know our workshop is accredited and works with every insurance company on the market?"],[7.0,21.0,"Among them:"],[21.0,24.0,"And many more"]]},{"t":"vid","src":"assets/casa-do-motoqueiro/v06.mp4","poster":"assets/casa-do-motoqueiro/v06.webp","w":540,"h":960,"cues":[[1.0,7.0,"Like our page on Facebook"]]}]},"inkflow":{"cover":"assets/ink/cover.webp","cw":1200,"ch":675,"imgs":[{"t":"img","src":"assets/ink/00.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/01.gif","w":1920,"h":1080},{"t":"img","src":"assets/ink/02.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/03.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/04.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/05.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/06.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/07.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/08.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/09.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/10.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/11.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/12.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/13.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/14.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/15.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/16.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/17.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/18.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/19.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/20.webp","w":1800,"h":1012},{"t":"img","src":"assets/ink/21.webp","w":1800,"h":1012}],"vids":[]},"giovanna-britschgy":{"cover":"assets/giovanna-britschgy/cover.webp","cw":1200,"ch":750,"imgs":[{"t":"img","src":"assets/giovanna-britschgy/01.webp","w":1800,"h":1012},{"t":"img","src":"assets/giovanna-britschgy/02.webp","w":1800,"h":1012},{"t":"img","src":"assets/giovanna-britschgy/03.webp","w":1800,"h":1012},{"t":"img","src":"assets/giovanna-britschgy/04.webp","w":1800,"h":1012},{"t":"img","src":"assets/giovanna-britschgy/05.webp","w":1800,"h":1012},{"t":"img","src":"assets/giovanna-britschgy/06.webp","w":1800,"h":1012},{"t":"img","src":"assets/giovanna-britschgy/07.webp","w":1800,"h":1012},{"t":"img","src":"assets/giovanna-britschgy/08.webp","w":1800,"h":1012},{"t":"img","src":"assets/giovanna-britschgy/09.webp","w":1800,"h":1012},{"t":"img","src":"assets/giovanna-britschgy/10.webp","w":1920,"h":1080},{"t":"img","src":"assets/giovanna-britschgy/11.webp","w":1920,"h":1080},{"t":"img","src":"assets/giovanna-britschgy/12.webp","w":1920,"h":1080},{"t":"img","src":"assets/giovanna-britschgy/logos.gif","w":1920,"h":1080}],"vids":[{"t":"vid","src":"assets/giovanna-britschgy/v01.mp4","poster":"assets/giovanna-britschgy/v01.webp","w":1280,"h":720,"cues":[[0.8,3.9,"Logo development: Giovanna Britschgy"],[4.5,9.9,"Floor plan"],[10.0,13.9,"Doors are marked with a 90\u00b0 angle"],[27.0,29.9,"Initials: (G)iovanna and (B)ritschgy"],[32.0,34.9,"Sketch"]]}]},"qualy-vid":{"cover":"assets/qv/cover.webp","cw":1200,"ch":675,"imgs":[{"t":"img","src":"assets/qv/00.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/01.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/02.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/03.gif","w":1920,"h":1080},{"t":"img","src":"assets/qv/04.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/05.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/06.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/07.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/08.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/09.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/10.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/11.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/12.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/13.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/14.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/15.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/16.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/17.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/18.webp","w":1800,"h":1012},{"t":"img","src":"assets/qv/19.webp","w":1800,"h":1012}],"vids":[]},"marcio-monaco":{"cover":"assets/mm2/cover.webp","cw":1200,"ch":675,"imgs":[{"t":"img","src":"assets/mm2/00.webp","w":1800,"h":1010},{"t":"img","src":"assets/mm2/01.webp","w":1800,"h":1010},{"t":"img","src":"assets/mm2/02.webp","w":1800,"h":3086},{"t":"img","src":"assets/mm2/03.webp","w":1800,"h":1010},{"t":"img","src":"assets/mm2/04.webp","w":1800,"h":1010},{"t":"img","src":"assets/mm2/05.webp","w":1800,"h":966},{"t":"img","src":"assets/mm2/06.gif","w":1920,"h":1080},{"t":"img","src":"assets/mm2/07.webp","w":1800,"h":1010},{"t":"img","src":"assets/mm2/08.webp","w":1800,"h":1198},{"t":"img","src":"assets/mm2/09.webp","w":1800,"h":1010},{"t":"img","src":"assets/mm2/10.webp","w":1800,"h":1010},{"t":"img","src":"assets/mm2/11.webp","w":1800,"h":1010},{"t":"img","src":"assets/mm2/12.webp","w":1800,"h":1225},{"t":"img","src":"assets/mm2/13.webp","w":1800,"h":1349},{"t":"img","src":"assets/mm2/14.webp","w":1800,"h":1002},{"t":"img","src":"assets/mm2/15.webp","w":1800,"h":1198},{"t":"img","src":"assets/mm2/16.webp","w":1800,"h":1199}],"vids":[]}};
+const PROJECTS = [
+  {
+    slug: "seo-portuga", stack: true, theme: { bg: "#0E0E0E", fg: "#ECE6DA", accent: "#E0393F" }, title: "Seo Portuga", kind: "identity", featured: true, lead: "assets/seo/00.webp",
+    type: "Brand identity", sector: "Artisan charcuterie",
+    scope: "Logo, packaging labels, pattern, merchandise, social media",
+    context: "Studio client",
+    summary: [],
+    sections: [
+      { items: [0] },
+      { items: [1], over: [
+        "Some people say the best meat at a Brazilian barbecue is the sausage. It is very popular in Brazil, and it started as a way to make meat last longer. The Portuguese were the ones who cut the meat into small pieces, added spices and put it into casings. Yes, the Portuguese! So the Seo Portuga Charcuterie story starts in [[Portugal]].",
+        "Seo Portuga is a tribute to grandpa Adriano Rodrigues, who was born in Portugal and moved to Brazil. It is [[a new brand with old roots]]. It continues the Rodrigues family's food tradition, now with [[the art of charcuterie]].",
+        "Making handmade products is like [[telling a story]]. For Seo Portuga, it is a growing passion: years of work, many tests and family recipes, with special spices and family secrets that give every product a [[unique flavour]]."
+      ] },
+      { items: [2] },
+      { items: [3], over: [
+        "The logo shows these qualities. The custom lettering, like the flavour of Seo Portuga's smoked meats, makes the brand feel [[rustic and strong]]. The letters were redrawn and curved to add [[energy and a modern look]], like a [[premium]] brand should have.",
+        "The main brand colours are black and red. Black comes from [[smoking]]: the smoke and charcoal from burning wood. Red is the [[fresh meat]], before it is prepared. White and wheat are neutral colours that bring balance to the [[visual identity]]."
+      ] },
+      { items: [4] },
+      { compare: [6, 5], label: "Drag to compare" },
+      { items: [7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 21, 22] }
+    ]
+  },
+  {
+    slug: "inkflow", stack: true, theme: { bg: "#0D0233", fg: "#ECE8FA", accent: "#A48BFF" }, title: "Inkflow", kind: "identity", featured: true,
+    type: "Brand identity", sector: "Tattoo studio",
+    scope: "Logo, stationery, merchandise, digital",
+    context: "Studio client",
+    summary: [],
+    sections: [
+      { items: [0] },
+      { text: { h: "More than a space, a concept.", p: [
+        "Inkflow is a tattoo studio where artists are free to be themselves, share ideas and turn into art everything that makes us human: feelings, emotions and values. The idea is to show that [[art and self-knowledge]] are connected, and one needs the other."
+      ] } },
+      { items: [2] },
+      { text: { h: "Typography", p: [
+        "The logo started from a strong typeface, [[fully redrawn]] to give the brand its own voice."
+      ] } },
+      { items: [1] },
+      { items: [3, 6] },
+      { grid: true, items: [7, 9] },
+      { items: [11] },
+      { text: { h: "Becoming is art.", big: true, p: ["Brand slogan, in Portuguese on the pieces: \u201cSe transformar \u00e9 arte\u201d"] } },
+      { text: { h: "Like a butterfly's transformation", p: [
+        "An egg becomes a caterpillar. The caterpillar eats well, then becomes a chrysalis. During this time its body changes and grows wings. Only then is the butterfly ready to fly free.",
+        "In the logo, the butterfly is a small detail, but an important one: it carries the main idea of Inkflow, [[personal transformation through art]]. The brand can use the butterfly in a simple way, like in the logo, or with more detail and a more artistic style."
+      ] } },
+      { items: [12, 13, 14] },
+      { text: { h: "A whole universe in one colour", p: [
+        "Purple means transformation. It is connected to spirituality, so it is more than a colour: it is a feeling. In violet tones it is linked to the crown chakra, which means connection and emotional balance. Purple is mystical and timeless, and it connects past, present and future. It is [[spiritual, creative and technological]], and it stands out in paintings, on clothes and on canvas."
+      ] } },
+      { items: [16, 18, 19, 21] }
+    ]
+  },
+  {
+    slug: "brasil-cacau", stack: true, theme: { bg: "#2A160D", fg: "#F6EBDD", accent: "#F2A541" }, title: "Chocolates Brasil Cacau", kind: "social", featured: true,
+    type: "Social media & campaigns", sector: "Chocolate retail chain",
+    scope: "Campaign key visuals, social posts, stories, display ads, banners",
+    context: "Freelance",
+    summary: [],
+    sections: [
+      { items: [26] },
+      { text: { h: "Campaigns for a national chocolate chain", p: [
+        "Chocolates Brasil Cacau is one of the best-known chocolate chains in Brazil. I worked as a freelance Art Director through the agency Ginga. I created the key visual for each campaign together with the Creative Director, and then [[I did the whole rollout]]: social posts, stories, ads and banners, in every format the campaign needed.",
+        "For a year and a half I worked on all the brand's channels, from social media and paid ads to website banners, for seasonal campaigns, launches and promotions. Here is a selection."
+      ] } },
+      { text: { h: "Easter 2022: \u201cSe joga no recheio\u201d", p: [
+        "(\u201cDive into the filling\u201d.) One key visual in three colours. The call to action changed in each version, using [[regional Brazilian slang]] (\u201cVem timbora\u201d, \u201cPartiu\u201d, \u201cChegue mais\u201d). The campaign was used on street posters, print, social media and the pre-sale."
+      ] } },
+      { grid: true, gap: true, items: [27, 29] },
+      { gap: true, items: [30, 31, 33, 32, 34] },
+      { text: { h: "Brasilidades", p: [
+        "Launch campaign for Brasilidades (\u201cA taste that's so us\u201d), a chocolate line inspired by classic Brazilian sweets. The key visual has [[three colours]], each with its own tagline."
+      ] } },
+      { gap: true, items: [37] },
+      { grid: true, gap: true, items: [38, 39] },
+      { text: { h: "Black Friday: \u201cBrasil Cacau Week\u201d", p: [
+        "A week with 20% off. The design uses big, repeated text, and the product [[breaks through]] it. Two layouts, each in three colours."
+      ] } },
+      { tight: true, board: [[17, 18, 19], [22, 21, 20]] }
+    ]
+  },
+  {
+    slug: "giovanna-britschgy", stack: true, theme: { bg: "#111111", fg: "#ECECEC", accent: "#FF9900" }, title: "Giovanna Britschgy", kind: "identity motion", featured: true,
+    type: "Brand identity", sector: "Architect & urban planner",
+    scope: "Logo, logo animation, stationery, site applications",
+    context: "Studio client",
+    summary: [],
+    sections: [
+      { items: [9] },
+      { text: { h: "Sustainability,\nResourcefulness,\nRefuge.", p: [
+        "Architecture and urban planning are much more than designing a space. Besides technique and calculations, they plan every part of a place for the people who will use it.",
+        "It takes sensitivity to create a safe place for people and their life stories, using practicality, accessibility and diversity to bring paths together."
+      ] } },
+      { items: [10] },
+      { text: { h: "Elements", p: [
+        "The logo is made mostly of squares, which mean stability and precision. But no part is fully closed. The square is security, and the openings are the flexibility every project needs. One does not cancel the other: technique and art live together.",
+        "The [[orange]] piece at the top right is the front door for ideas. It is also what makes the G different from the B.",
+        "The small piece alone in the corner means refuge: the personal corner that turns a well-planned space into a home."
+      ] } },
+      { text: { h: "", accent: true, p: ["Watch the video below to see how the logo was developed."] }, items: ["v0"] },
+      { items: [11, 2, 12, 7, 1, 3, 5, 4, 6] }
+    ]
+  },
+  {
+    slug: "qualy-vid", stack: true, theme: { bg: "#071263", fg: "#EEF0FF", accent: "#FF5AA8" }, title: "Qualy Vid", kind: "identity social",
+    type: "Brand identity", sector: "Sport & wellbeing programs",
+    scope: "Logo, pattern, stationery, uniforms, event campaign, social media",
+    context: "Studio client",
+    summary: [],
+    sections: [
+      { items: [0] },
+      { text: { h: "Health, sport and affection.", p: [
+        "Qualy Vid wants to improve people's quality of life through physical, mental and social wellbeing. It brings health and care together through sport, recreation, art and culture. It works with very different people: from fun activities for kids and exercise programs at work, to referees for sports competitions."
+      ] } },
+      { items: [1] },
+      { text: { h: "Health with heart", p: [
+        "Taking care of your health can mean many things, but the most important is [[valuing life]]. Being healthy to enjoy good moments, and enjoying good moments while you take care of your health. One always completes the other."
+      ] } },
+      { text: { h: "Body in motion.", big: true, p: ["Brand slogan, in Portuguese on the pieces: \u201cCorpo em movimento\u201d"] } },
+      { items: [2] },
+      { text: { h: "The symbol", p: [
+        "A [[flag]] tells a story. People carry it with pride to represent teams, countries, ideas and causes. In the logo, the flag is the main structure, and it holds the other elements of the brand. It follows the proportions of an official flag, with a sense of movement and energy.",
+        "From a simple school court to a big Olympic stadium, from football fields to basketball courts, every place where people play sport is important. Sport changes lives and helps build a future. That is why a [[field]] is part of the symbol, drawn in perspective.",
+        "Support is also essential in sport: the energy of the crowd. In the logo it is the [[grandstand]]. Its three rows are the three pillars of the brand: [[health, sport and culture]]."
+      ] } },
+      { items: [3] },
+      { items: [4, 5, 6] },
+      { text: { h: "Colours", p: [
+        "Blue and pink show that the brand is fun and light. Blue is linked to harmony and balance, and it brings trust and responsibility. Pink is the colour of imagination and sensitivity, and it reminds us of childhood. Together they represent the brand's different audiences and bring [[joy]]."
+      ] } },
+      { items: [7, 8, 9, 10, 11, 12, 13, 15, 17, 18, 19] }
+    ]
+  },
+  {
+    slug: "marcio-monaco", stack: true, theme: { bg: "#0F0F0F", fg: "#F2F2F2", accent: "#FF2E55" }, title: "Marcio Monaco", kind: "identity",
+    type: "Brand identity", sector: "Personal trainer",
+    scope: "Logo, gym signage, apparel, merchandise, digital",
+    context: "Studio client",
+    summary: [],
+    sections: [
+      { items: [0, 1] },
+      { text: { h: "Health, results and quality of life.", p: [
+        "Marcio Monaco is a personal trainer. His work has three pillars: [[quality of life, health and results]] from exercise. The identity needed to be clean and simple, and show both him and his field."
+      ] } },
+      { items: [2] },
+      { text: { h: "Symbol construction", p: [
+        "The symbol has three elements: the [[heart rate]], for health; the [[letter M]], for Marcio Monaco; and a [[graph line]], for results. The symbol leans a little forward to show movement."
+      ] } },
+      { items: [6, 7, 8, 9, 10, 11, 12, 15, 16] }
+    ]
+  },
+  {
+    slug: "houpa", stack: true, theme: { bg: "#2A0B47", fg: "#F4ECFC", accent: "#C9A2FF" }, title: "houpa!", kind: "social",
+    type: "In-app & digital campaigns", sector: "Fashion wholesale app",
+    scope: "In-app banners, social media, email marketing",
+    context: "Freelance",
+    summary: [],
+    sections: [
+      { text: { h: "Wholesale fashion, in your pocket.", p: [
+        "houpa! is a marketplace and management platform for wholesale fashion in Brazil. It started in the biggest fashion centres of S\u00e3o Paulo, Br\u00e1s and Bom Retiro. In the app, brands manage their catalogue, stock and sales, and shops from all over Brazil [[buy directly from the brands]], without travelling to S\u00e3o Paulo. The platform also has its own delivery and payment services."
+      ] } },
+      { text: { h: "One structure, many brands", p: [
+        "Each campaign showed a different brand from the app. My challenge was to keep the houpa! design system and still give [[each brand its own look]]. I designed all formats for each campaign."
+      ] } },
+      { text: { h: "In-app banners", p: [
+        "The main showcase of the app, the first thing retailers see when they open houpa!. Here, seven different brands in the same layout."
+      ] } },
+      { board: [[0, 1, 2], [3, 4], [5, 6]] },
+      { text: { h: "Social media", p: [
+        "Instagram posts that take each campaign outside the app."
+      ] } },
+      { board: [[7, 8], [9, 10]] },
+      { text: { h: "Email marketing", p: [
+        "Newsletters for retailers with the latest news from each brand."
+      ] } },
+      { items: [15, 16, 17, 18], emails: true }
+    ]
+  },
+  {
+    slug: "casa-do-motoqueiro", stack: true, theme: { bg: "#0E0E0E", fg: "#EFEFEF", accent: "#FF3B4E" }, title: "Casa do Motoqueiro", kind: "motion",
+    type: "Motion design", sector: "Motorcycle parts & service",
+    scope: "Animated videos for in-store TV screens",
+    context: "Studio client",
+    summary: [],
+    sections: [
+      { text: { h: "Made for the store screens", p: [
+        "Short animated videos for the TV screens inside the Casa do Motoqueiro store. They play on a loop all day.",
+        "Each video shows [[one message in a few seconds]], like WhatsApp service, the 24-hour rescue line, insurance tips and featured products, all in the brand's red and black."
+      ] } },
+      { board: [["v0", "v1", "v2"], ["v3", "v4", "v5"]] }
+    ]
+  }
+
+];
+
+
+const app = document.getElementById("app");
+const bySlug = Object.fromEntries(PROJECTS.map(p => [p.slug, p]));
+const FILTERS = [["all", "All work"], ["identity", "Brand identity"], ["social", "Social & campaigns"], ["motion", "Motion"]];
+let filter = "all";
+try { filter = localStorage.getItem("da-filter") || "all"; } catch (e) {}
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function card(p, i) {
+  const m = MANIFEST[p.slug];
+  const lead = i === 0 && p.lead && filter === "all";
+  return `<a class="card${lead ? " lead" : ""}" href="#${p.slug}">
+    <div class="thumb"><img src="${lead ? p.lead : m.cover}" alt="${esc(p.title)}, ${esc(p.type.toLowerCase())}" loading="lazy" width="${m.cw}" height="${m.ch}"></div>
+    <div class="meta"><h3>${esc(p.title)}</h3><span class="mono">${esc(p.type)}</span></div>
+    ${p.sector ? `<div class="sub">${esc(p.sector)}</div>` : ""}
+  </a>`;
+}
+
+let heroPlayed = false;
+function home() {
+  if (!heroPlayed) document.querySelector("header.top").classList.add("head-in");
+  const shown = PROJECTS.filter(p => filter === "all" || p.kind.split(" ").includes(filter));
+  const feat = filter === "all" ? shown.filter(p => p.featured) : [];
+  const rest = filter === "all" ? shown.filter(p => !p.featured) : shown;
+  app.innerHTML = `
+  <section class="hero${heroPlayed ? "" : " intro-anim"}" aria-label="Introduction">
+    <div class="wrap">
+      <h1 class="hello" aria-label="Hello, I'm Diogo.">
+        <span class="line" aria-hidden="true"><span class="w hw">Hello,</span></span>
+        <span class="line line2" aria-hidden="true"><span class="w nm"><span class="im">I'm </span><span class="dg">Diogo.</span><sup>*</sup><span class="note"><svg class="ad" viewBox="0 0 157 40"><path class="arrow-line" pathLength="1" d="M1 1 C 4 14, 10 26, 22 31 C 34 36, 56 35, 58 23 C 60 9, 41 5, 36 16 C 31 28, 46 40, 68 38 C 95 35, 121 22, 155 12"/><path class="arrow-head" pathLength="1" d="M145 3 L 156 12 L 146 22"/></svg><svg class="am" viewBox="0 0 40 100"><path class="arrow-line" pathLength="1" d="M20 2 C 21 18, 34 26, 30 40 C 27 51, 11 49, 12 39 C 13 28, 30 33, 26 54 C 23 69, 20 80, 20 96"/><path class="arrow-head" pathLength="1" d="M11 86 L 20 97 L 29 86"/></svg><span class="anchor"><span class="pron">dee-OH-go</span></span></span></span></span>
+      </h1>
+      <div class="hero-foot"><button type="button" class="scroll-cue mono" onclick="document.getElementById('work-title').scrollIntoView({ behavior: 'smooth' })">Scroll to see my work ↓<span class="caret" aria-hidden="true"></span></button></div>
+    </div>
+  </section>
+  <section class="lede"><div class="wrap">${`<p><strong>Graphic designer for brand identities and campaigns.</strong> Almost 10 years of experience, from my own branding studio in Brazil to long projects with big national brands. Now living on the Sunshine Coast, Queensland.</p>`}</div></section>
+  <section class="wrap" aria-labelledby="work-title">
+    <div class="work-head">
+      <h2 id="work-title">Portfolio</h2>
+      <div class="filters" role="group" aria-label="Filter projects">
+        ${FILTERS.map(([k, l]) => `<button type="button" data-f="${k}" aria-pressed="${k === filter}">${l}</button>`).join("")}
+      </div>
+    </div>
+    ${feat.length ? `<div class="grid featured">${feat.map((p, i) => card(p, i)).join("")}</div><p class="more-label">More work</p>` : ""}
+    <div class="grid">${rest.map(p => card(p, -1)).join("")}</div>
+  </section>`;
+  heroPlayed = true;
+  const fit = () => {
+    const h = app.querySelector(".hello"), w = app.querySelector(".hw"), nm = app.querySelector(".nm");
+    if (h && w) h.style.setProperty("--hw", w.offsetWidth + "px");
+    if (nm) { const node = nm.querySelector(".dg").firstChild, i = node.textContent.lastIndexOf("g"); if (i > -1) { const r = document.createRange(); r.setStart(node, i); r.setEnd(node, i + 1); nm.style.setProperty("--gx", (r.getBoundingClientRect().right - nm.getBoundingClientRect().left) + "px"); } }
+  };
+  fit(); document.fonts && document.fonts.ready.then(fit); window.onresize = fit;
+  app.querySelectorAll(".filters button").forEach(b => b.addEventListener("click", () => {
+    filter = b.dataset.f;
+    try { localStorage.setItem("da-filter", filter); } catch (e) {}
+    home();
+    document.getElementById("work-title").scrollIntoView({ block: "start" });
+  }));
+}
+
+function media(m, ref) {
+  if (typeof ref === "string") {
+    const v = m.vids[+ref.slice(1)];
+    return { kind: "vid", ...v, ratio: v.w / v.h };
+  }
+  const i = m.imgs[ref];
+  return { kind: "img", ...i, ratio: i.w / i.h };
+}
+
+function tile(it, title) {
+  if (it.kind === "vid") {
+    return `<div class="tile vid"><video src="${it.src}" poster="${it.poster}" width="${it.w}" height="${it.h}" playsinline preload="none" aria-label="${esc(title)} video"></video>${it.cues ? `<div class="cap" aria-live="polite" data-cues="${esc(JSON.stringify(it.cues))}"></div>` : ""}<button type="button" class="play" aria-label="Play ${esc(title)} video"><span></span></button></div>`;
+  }
+  return `<button class="tile" type="button" data-full="${it.src}"><img src="${it.src}" alt="${esc(title)} application" loading="lazy" width="${it.w}" height="${it.h}"></button>`;
+}
+
+function layout(items, title) {
+  // group consecutive items by shape, then lay each run out as rows
+  const out = [];
+  let i = 0;
+  const shape = r => r > 1.25 ? "wide" : r >= .8 ? "square" : "tall";
+  let firstWide = true;
+  while (i < items.length) {
+    const s = shape(items[i].ratio);
+    let j = i;
+    while (j < items.length && shape(items[j].ratio) === s) j++;
+    let run = items.slice(i, j);
+    if (s === "wide") {
+      while (run.length) {
+        if (firstWide || run.length === 1 || run[0].ratio > 3) { out.push(row([run.shift()], title, "wide")); firstWide = false; }
+        else out.push(row(run.splice(0, 2), title, "wide"));
+      }
+    } else {
+      const per = s === "square" ? (run.length % 3 === 0 || run.length > 4 ? 3 : 2) : 3;
+      while (run.length) out.push(row(run.splice(0, per), title, s, per));
+    }
+    i = j;
+  }
+  return out.join("");
+}
+function row(items, title, s, per) {
+  const n = Math.max(items.length, per || 1);
+  return `<div class="row r${n} ${s}" style="--n:${n}">${items.map(it => tile(it, title)).join("")}</div>`;
+}
+
+function project(p) {
+  const m = MANIFEST[p.slug];
+  const idx = PROJECTS.indexOf(p);
+  const nxt = PROJECTS[(idx + 1) % PROJECTS.length];
+  const spec = [["Sector", p.sector], ["Scope", p.scope], ["Context", p.context]].filter(r => r[1]);
+  app.innerHTML = `
+  <article>
+    <header class="proj-head"><div class="wrap">
+      <a class="back" href="#work">← All work</a>
+      <div><p class="mono">${esc(p.type)}</p><h1>${esc(p.title)}</h1></div>
+      <div class="proj-body">
+        <dl class="spec">${spec.map(([k, v]) => `<div><dt class="mono">${k}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
+        ${p.summary.length ? `<div class="story">${p.summary.map(t => `<p>${esc(t)}</p>`).join("")}</div>` : ""}
+      </div>
+    </div></header>
+    <div class="wrap">
+      ${p.stack ? `<div class="stackwrap${p.frame ? " framed" : ""}" style="--pbg:${p.theme.bg};--pfg:${p.theme.fg};--pac:${p.theme.accent}">` : ""}${p.sections.map(sec => {
+        const items = (sec.items || []).map(r => media(m, r));
+        const rich = s => esc(s).replace(/\[\[(.+?)\]\]/g, '<span class="hl">$1</span>');
+        const text = !sec.text ? "" : p.stack
+          ? `<div class="band${sec.text.accent ? " accent" : ""}${sec.text.big ? " big" : ""}"><div class="band-in">${sec.text.h ? `<h3>${rich(sec.text.h)}</h3>` : ""}${sec.text.p.map(t => `<p>${rich(t)}</p>`).join("")}</div></div>`
+          : `<div class="textblock"><h2>${esc(sec.text.h)}</h2><div class="prose">${sec.text.p.map(t => `<p>${esc(t)}</p>`).join("")}</div></div>`;
+        const alt = esc(p.title) + " brand board";
+        const body = sec.sizes
+          ? `<div class="sizes">${sec.sizes.map(r => { const it = media(m, r); return `<figure style="width:${it.w}px"><button class="tile" type="button" data-full="${it.src}"><img src="${it.src}" alt="${esc(p.title)} ${it.w}×${it.h} ad" loading="lazy" width="${it.w}" height="${it.h}"></button><figcaption>${it.w}×${it.h}</figcaption></figure>`; }).join("")}</div>`
+          : sec.board
+          ? `<div class="board${sec.tight ? " tight" : ""}${(() => { if (Math.max(...sec.board.map(r => r.length)) < 3) return ""; const all = sec.board.flat().map(r => media(m, r)); const avg = all.reduce((a, i) => a + i.ratio, 0) / all.length; return avg > 1.2 ? " m1" : " m2"; })()}">${sec.board.map(row => { const its = row.map(r => media(m, r)); return `<div class="brow" style="grid-template-columns:${its.map(i => i.ratio.toFixed(4) + "fr").join(" ")}">${its.map(it => tile(it, p.title)).join("")}</div>`; }).join("")}</div>`
+          : sec.compare
+          ? (() => { const [a, b] = sec.compare.map(r => media(m, r)); return `<div class="cmp"><img src="${b.src}" alt="${alt}" width="${b.w}" height="${b.h}" loading="lazy"><div class="top"><img src="${a.src}" alt="" width="${a.w}" height="${a.h}" loading="lazy"></div><span class="bar"></span><input type="range" min="0" max="100" value="50" step=".5" aria-label="Before and after comparison"><span class="knob" aria-hidden="true"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2 2 7l5 5M15 2l5 5-5 5"/></svg></span>${sec.label ? `<span class="hint">${esc(sec.label)}</span>` : ""}</div>`; })()
+          : sec.over
+          ? `<div class="over"><div class="over-txt">${sec.over.map(t => `<p>${rich(t)}</p>`).join("")}</div><img src="${items[0].src}" alt="${alt}" width="${items[0].w}" height="${items[0].h}" loading="lazy"></div>`
+          : !items.length ? "" : sec.emails
+          ? `${p.stack ? `<div class="board">` : ""}<div class="emails">${items.map(it => `<div class="tile"><img src="${it.src}" alt="${esc(p.title)} email" loading="lazy" width="${it.w}" height="${it.h}"></div>`).join("")}</div><p class="mono email-note">Scroll inside each email to see the full layout</p>${p.stack ? `</div>` : ""}`
+          : p.stack ? `<div class="gallery stack${sec.grid ? " g2" : ""}${sec.gap ? " spaced" : ""}">${items.map(it => tile(it, p.title)).join("")}</div>` : `<div class="gallery">${layout(items, p.title)}</div>`;
+        return `<section class="section${p.stack ? " flush" : ""}">${text}${body}</section>`;
+      }).join("")}${p.stack ? "</div>" : ""}
+      <nav class="next" aria-label="Next project"><a href="#${nxt.slug}"><span class="mono">Next project</span><strong>${esc(nxt.title)} →</strong></a></nav>
+    </div>
+  </article>`;
+  wireMedia();
+}
+
+function about() {
+  app.innerHTML = `
+  <section class="about"><div class="wrap">
+    <div class="about-grid">
+      <div class="prose">
+        <h1>Hi, I'm Diogo.<span class="say">Say it dee-OH-go</span></h1>
+        <p>I'm a graphic designer from Brazil, with almost ten years of experience in brand identity, advertising campaigns and social media.</p>
+        <p>I started my career in advertising agencies, making campaigns for online and offline media. Later I opened my own branding studio, Diogo Arnosti Design. There I created brand identities from the first idea to the final pieces, like stationery, packaging, signs and merchandise. I also worked as a freelancer for big brands like Chocolates Brasil Cacau and houpa!, creating campaign visuals and adapting them to all formats.</p>
+        <div class="break">
+          <h2>Why the break from design?</h2>
+          <p>I moved to Australia in 2022. Before working as a designer here, I wanted to feel confident in English. So I worked in hospitality, and it helped me improve my communication and teamwork. Now I'm ready to go back to what I love: design.</p>
+          <details>
+            <summary>Read the full story</summary>
+            <div class="full">
+              <p>In Brazil, I worked in different agencies and in my own studio. I worked with many kinds of clients, deadlines and creative challenges.</p>
+              <p>When I moved to Australia, my first goal was to learn English. Design work needs a lot of conversation: briefs, presentations and feedback. I wanted to be confident in these conversations before working as a designer again.</p>
+              <p>So I worked in other jobs, mostly in hospitality. Busy shifts and talking with many customers every day helped me communicate better, adapt quickly and work well in a team.</p>
+              <p>I know I'm starting again in a new market. I want to learn how design works in Australia and bring my experience, creativity and new ideas to a team. I'm open to feedback and I always try to improve.</p>
+            </div>
+          </details>
+        </div>
+        <p>I live on the Sunshine Coast. I'm open to in-house or agency jobs here, or remote jobs from anywhere. I'm also studying UX/UI design, and I'm building a roster app as a personal project.</p>
+      </div>
+      <div class="side">
+        <div class="block"><h2>Where I've worked</h2>
+          <ul class="timeline">
+            <li><span class="mono">Studio</span><div><strong>Diogo Arnosti Design</strong><span>My own branding studio in Brazil. Clients included Chocolates Brasil Cacau (as Art Director, through the agency Ginga) and houpa!</span></div></li>
+            <li><span class="mono">Agencies</span><div><strong>Ponderar · Voo Propaganda</strong><span>Advertising campaigns, online and offline media</span></div></li>
+          </ul>
+        </div>
+        <div class="block"><h2>Tools</h2>
+          <ul class="tags"><li class="strong">Photoshop (advanced)</li><li class="strong">Illustrator (advanced)</li><li>InDesign (basics)</li><li>Premiere Pro (video editing & motion basics)</li><li>Figma (studying)</li></ul>
+        </div>
+        <div class="block"><h2>Languages</h2>
+          <ul class="tags"><li class="strong">Portuguese, native</li><li class="strong">English, advanced</li></ul>
+        </div>
+      </div>
+    </div>
+  </div></section>`;
+}
+
+let lbList = [], lbI = 0, lbEl = null, lastFocus = null;
+function openLb(list, i) {
+  lbList = list; lbI = i; lastFocus = document.activeElement;
+  lbEl = document.createElement("div");
+  lbEl.className = "lb"; lbEl.setAttribute("role", "dialog"); lbEl.setAttribute("aria-modal", "true"); lbEl.setAttribute("aria-label", "Image viewer");
+  lbEl.innerHTML = `<img alt=""><div class="bar"><button type="button" class="close">Close</button></div><button type="button" class="prev" aria-label="Previous image">←</button><button type="button" class="nxt" aria-label="Next image">→</button>`;
+  document.body.appendChild(lbEl);
+  lbEl.querySelector(".close").onclick = closeLb;
+  lbEl.querySelector(".prev").onclick = () => stepLb(-1);
+  lbEl.querySelector(".nxt").onclick = () => stepLb(1);
+  lbEl.addEventListener("click", e => { if (e.target === lbEl) closeLb(); });
+  showLb(); lbEl.querySelector(".close").focus();
+}
+function showLb() { lbEl.querySelector("img").src = lbList[lbI]; }
+function stepLb(d) { lbI = (lbI + d + lbList.length) % lbList.length; showLb(); }
+function closeLb() { if (lbEl) { lbEl.remove(); lbEl = null; lastFocus && lastFocus.focus(); } }
+document.addEventListener("keydown", e => {
+  if (!lbEl) return;
+  if (e.key === "Escape") closeLb();
+  if (e.key === "ArrowRight") stepLb(1);
+  if (e.key === "ArrowLeft") stepLb(-1);
+});
+
+function wireMedia() {
+  const tiles = [...app.querySelectorAll("button.tile")];
+  const list = tiles.map(t => t.dataset.full);
+  tiles.forEach((t, i) => t.addEventListener("click", () => openLb(list, i)));
+  app.querySelectorAll(".cmp").forEach(c => {
+    const r = c.querySelector("input");
+    r.addEventListener("input", () => { c.style.setProperty("--x", r.value + "%"); c.classList.add("used"); });
+  });
+  app.querySelectorAll(".tile.vid").forEach(box => {
+    const v = box.querySelector("video"), btn = box.querySelector(".play");
+    btn.addEventListener("click", () => {
+      app.querySelectorAll(".tile.vid video").forEach(o => { if (o !== v) o.pause(); });
+      v.controls = true; box.classList.add("playing"); v.play().catch(() => {});
+    });
+    v.addEventListener("ended", () => box.classList.remove("playing"));
+    const cap = box.querySelector(".cap");
+    if (cap) {
+      const cues = JSON.parse(cap.dataset.cues);
+      try {
+        const tr = v.addTextTrack("captions", "English", "en");
+        cues.forEach(c => tr.addCue(new VTTCue(c[0], c[1], c[2])));
+        tr.mode = "showing";
+        cap.remove();
+      } catch (e) {
+        v.addEventListener("timeupdate", () => { const c = cues.find(q => v.currentTime >= q[0] && v.currentTime < q[1]); const txt = c ? c[2] : ""; if (cap.textContent !== txt) cap.textContent = txt; });
+      }
+    }
+  });
+}
+
+const THEME_KEYS = ["--paper", "--surface", "--ink", "--muted", "--line"];
+function pageTheme(th) {
+  const r = document.documentElement.style;
+  THEME_KEYS.forEach(k => r.removeProperty(k));
+  if (th) { r.setProperty("--paper", th.bg); r.setProperty("--surface", th.bg); r.setProperty("--ink", th.fg); r.setProperty("--muted", `color-mix(in srgb, ${th.fg} 62%, ${th.bg})`); r.setProperty("--line", `color-mix(in srgb, ${th.fg} 22%, ${th.bg})`); }
+}
+function route() {
+  const h = (location.hash || "#work").slice(1);
+  closeLb();
+  pageTheme(bySlug[h] && bySlug[h].theme);
+  let navKey = "work";
+  if (h === "contact") { if (!app.children.length) home(); navKey = "contact"; document.getElementById("contact").scrollIntoView(); }
+  else if (h === "about") { about(); navKey = "about"; window.scrollTo(0, 0); }
+  else if (bySlug[h]) { project(bySlug[h]); window.scrollTo(0, 0); document.title = bySlug[h].title + " · Diogo Arnosti"; }
+  else { home(); window.scrollTo(0, 0); }
+  if (!bySlug[h]) document.title = "Diogo Arnosti Portfolio";
+  document.querySelectorAll("[data-nav]").forEach(a => a.toggleAttribute("aria-current", a.dataset.nav === navKey) || a.removeAttribute("aria-current"));
+  document.querySelectorAll("[data-nav]").forEach(a => { if (a.dataset.nav === navKey) a.setAttribute("aria-current", "page"); });
+}
+window.addEventListener("hashchange", route);
+route();
+
+document.getElementById("copy-email").addEventListener("click", async e => {
+  const t = document.getElementById("email").textContent;
+  try { await navigator.clipboard.writeText(t); e.target.textContent = "Copied"; }
+  catch (err) { const r = document.createRange(); r.selectNodeContents(document.getElementById("email")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); e.target.textContent = "Selected, press Ctrl+C"; }
+  setTimeout(() => e.target.textContent = "Copy email", 2200);
+});
+</script>
+
+</html>
