@@ -796,7 +796,7 @@ function pageTheme(th) {
   if (th) { r.setProperty("--paper", th.bg); r.setProperty("--surface", th.bg); r.setProperty("--ink", th.fg); r.setProperty("--muted", `color-mix(in srgb, ${th.fg} 62%, ${th.bg})`); r.setProperty("--line", `color-mix(in srgb, ${th.fg} 22%, ${th.bg})`); }
 }
 function gcCount(path, tries = 0) {
-  if (window.goatcounter && window.goatcounter.count) { try { window.goatcounter.count({ path }); } catch (e) {} }
+  if (window.goatcounter && window.goatcounter.count) { try { if (window.goatcounter.bind_events) window.goatcounter.bind_events(); window.goatcounter.count({ path }); } catch (e) {} }
   else if (tries < 20 && document.querySelector("script[data-goatcounter]")) setTimeout(() => gcCount(path, tries + 1), 500);
 }
 function route() {
